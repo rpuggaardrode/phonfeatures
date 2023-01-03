@@ -1,10 +1,12 @@
 Package: sampafeatures
-Title: What the Package Does (One Line, Title Case)
+Title: Assign articulatory features to X-SAMPA characters
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Rasmus", "Puggaard-Rode", , "r.puggaard@phonetik.uni-muenchen.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-4522-9987"))
+Description: Adds columns with articulatory features to a data frame based on phonetic transcription 
+    using X-SAMPA. Default articulatory features are already defined, but the user can also add 
+    non-standard X-SAMPA characters or change the default feature values.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
