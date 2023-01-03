@@ -1,6 +1,6 @@
-#' Update feature lookup file with redundant features
+#' Create feature lookup table with generic features
 #'
-#' @return A data frame
+#' @return A data frame containing a feature lookup table
 #' @export
 #'
 #' @examples

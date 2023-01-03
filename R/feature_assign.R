@@ -5,10 +5,10 @@
 #' @param val One or more strings specifying the values to be associated with the `feature`s
 #' @param copy A string containing an existing character in the lookup table for which other
 #' features are copied
-#' @param lookup A data frame containing a lookup table with feature values. `param` is optional;
+#' @param lookup A data frame containing a lookup table with feature values. `lookup` is optional;
 #' if left blank, a lookup table will be generated using `update_lookup`
 #'
-#' @return A data frame
+#' @return A data frame containing a feature lookup table
 #' @export
 #'
 #' @examples
