@@ -1,3 +1,8 @@
+#' Update feature lookup file with redundant features
+#'
+#' @return A data frame
+#' @export
+#'
 update_lookup <- function() {
 
   tmp <- sampa_lookup
