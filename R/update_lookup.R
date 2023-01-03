@@ -3,6 +3,8 @@
 #' @return A data frame
 #' @export
 #'
+#' @examples
+#' x <- update_lookup()
 update_lookup <- function() {
 
   tmp <- sampa_lookup

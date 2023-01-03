@@ -12,3 +12,6 @@ A data frame
 \description{
 Update feature lookup file with redundant features
 }
+\examples{
+x <- update_lookup()
+}
