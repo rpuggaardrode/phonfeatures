@@ -3,6 +3,18 @@
 #' `feature_assign()` is used to create a new feature lookup table with
 #' added unknown X-SAMPA characters.
 #'
+#' @details Note that features assigned to new characters will be inherited by
+#' versions of that character with diacritics. For example, if the character
+#' `ph` is copied from `p` with the value `aspirated` for the feature `lar`,
+#' then passing `ph_G` to [feature_lookup()] will return a velarized aspirated
+#' stop (see the final example below). If you need to override this, `ph_G` must
+#' be manually assigned features.
+#'
+#' `feature_reassign()` does not presently support IPA
+#' characters. The function [ipa::ipa()] is used under the hood to convert IPA
+#' characters to X-SAMPA, and if you are using characters that are not known
+#' to [ipa::ipa()], the functionality in this package will fail.
+#'
 #' @param new A string containing the character to be added to the X-SAMPA
 #' lookup table.
 #' @param feature One or more strings specifying the features to be associated
@@ -28,7 +40,15 @@
 #' tail(x)
 #' y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
 #' tail(y)
-feature_assign <- function(new, feature=NA, val=NA, copy=NA, lookup=NULL){
+#' ###
+#' feature_lookup(sampa='ph_G', feature=c('lar', 'modifications'), lookup=x)
+feature_assign <- function(new,
+                           feature=NA,
+                           val=NA,
+                           copy=NA,
+                           lookup=NULL){
+
+  new <- stringr::str_replace(new, '\\\\', '/')
 
   if (!(is.null(lookup))) {
     tmp <- lookup

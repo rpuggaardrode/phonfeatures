@@ -4,6 +4,17 @@
 #' characters if the user wishes to assign different (non-standard) feature
 #' values to existing characters.
 #'
+#' @details Note that reassigned features will be inherited by any characters
+#' with diacritics. For example, if the character `t` is assigned the place
+#' feature `dental`, then `t_h` will also be assigned the place feature
+#' `dental`. If you need to override this, `t_h` can be assigned manually using
+#' [feature_assign()].
+#'
+#' `feature_reassign()` does not explicitly support IPA
+#' characters. However, if `feature_reassign()` is used on an X-SAMPA string
+#' corresponding to the IPA string you wish to modify, [add_features()] with
+#' `ipa=TRUE` should still give the desired result (see the last example).
+#'
 #' @param sampa String containing existing X-SAMPA characters to be modified.
 #' @param feature One or more strings specifying the features to be changed.
 #' @param val One or more strings specifying the values to be associated with
@@ -27,7 +38,14 @@
 #' x[x$segm=='t',]
 #' y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 #' y[y$segm=='d',]
-feature_reassign <- function(sampa, feature=NA, val=NA, lookup=NULL){
+#' ###
+#' feature_lookup(sampa='d', feature='place', lookup=x, ipa=TRUE)
+feature_reassign <- function(sampa,
+                             feature=NA,
+                             val=NA,
+                             lookup=NULL){
+
+  sampa <- stringr::str_replace(sampa, '\\\\', '/')
 
   if (!(is.null(lookup))) {
     tmp <- lookup

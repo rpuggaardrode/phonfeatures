@@ -26,6 +26,18 @@ A data frame containing a feature lookup table.
 characters if the user wishes to assign different (non-standard) feature
 values to existing characters.
 }
+\details{
+Note that reassigned features will be inherited by any characters
+with diacritics. For example, if the character \code{t} is assigned the place
+feature \code{dental}, then \code{t_h} will also be assigned the place feature
+\code{dental}. If you need to override this, \code{t_h} can be assigned manually using
+\code{\link[=feature_assign]{feature_assign()}}.
+
+\code{feature_reassign()} does not explicitly support IPA
+characters. However, if \code{feature_reassign()} is used on an X-SAMPA string
+corresponding to the IPA string you wish to modify, \code{\link[=add_features]{add_features()}} with
+\code{ipa=TRUE} should still give the desired result (see the last example).
+}
 \examples{
 lkup <- update_lookup()
 lkup[lkup$segm=='t'|lkup$segm=='d',]
@@ -33,6 +45,8 @@ x <- feature_reassign(sampa='t', feature='place', val='dental')
 x[x$segm=='t',]
 y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 y[y$segm=='d',]
+###
+feature_lookup(sampa='d', feature='place', lookup=x, ipa=TRUE)
 }
 \seealso{
 \code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if

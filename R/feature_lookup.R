@@ -1,17 +1,19 @@
 #' Look up articulatory features
 #'
-#' Given an X-SAMPA character, `feature_lookup()` can be used to return one or
+#' Given a phonetic character, `feature_lookup()` can be used to return one or
 #' more articulatory feature values. `feature_lookup()` can be used to check
 #' whether the generic feature values provided by [update_lookup()] are in
 #' agreement with the user's needs, and the function is used under the hood for
 #' the [add_features()] function.
 #'
-#' @param sampa A string containing an X-SAMPA character.
+#' @param sampa A string containing a phonetic character.
 #' @param feature One or more strings specifying the features to look up;
 #' if left blank, all pre-specified feature are returned.
 #' @param lookup A data frame containing a lookup table with feature values.
 #' `lookup` is optional; if left blank, a lookup table will be generated using
 #' [update_lookup()].
+#' @param ipa A Boolean indicating whether the phonetic characters in `col` are
+#' IPA characters. Default is `FALSE`.
 #'
 #' @return A character object or data frame containing the requested feature(s)
 #' @seealso [update_lookup()] which generates a generic feature lookup table if
@@ -19,6 +21,9 @@
 #' assign features to unknown characters; [feature_reassign()] which is used
 #' to change the generic feature values provided by [update_lookup()];
 #' [add_features()] which is used to add feature column(s) to a data frame.
+#'
+#' [ipa::ipa()] is used to convert X-SAMPA characters into IPA characters if
+#' `ipa=TRUE`.
 #' @export
 #'
 #' @examples
@@ -26,12 +31,19 @@
 #' feature_lookup(sampa='p_h', feature='place')
 #' x <- feature_reassign(sampa='t', feature='place', val='dental')
 #' feature_lookup(sampa='t', feature='place', lookup=x)
-feature_lookup <- function (sampa, feature=c('height', 'backness', 'roundness',
-                                             'place', 'major_place', 'manner',
-                                             'major_manner', 'lar', 'voice', 'length',
-                                             'modifications', 'syllabic', 'release',
-                                             'nasalization', 'tone'), lookup=NULL) {
+#' ###
+#' feature_lookup(sampa='2', feature='roundness')
+#' feature_lookup(sampa='ø', feature='roundness', ipa=TRUE)
+feature_lookup <- function (sampa,
+                            feature=c('height', 'backness', 'roundness',
+                                      'place', 'major_place', 'manner',
+                                      'major_manner', 'lar', 'voice', 'length',
+                                      'modifications', 'syllabic', 'release',
+                                      'nasalization', 'tone'),
+                            lookup=NULL,
+                            ipa=FALSE) {
 
+  if (ipa) {sampa <- ipa::ipa(sampa)}
   sampa <- stringr::str_replace(sampa, '\\\\', '/')
 
   if (!(is.null(lookup))) {

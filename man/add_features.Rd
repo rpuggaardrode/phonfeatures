@@ -4,12 +4,12 @@
 \alias{add_features}
 \title{Add articulatory features to data frame}
 \usage{
-add_features(data, col, feature, lookup = NULL)
+add_features(data, col, feature, lookup = NULL, ipa = FALSE)
 }
 \arguments{
-\item{data}{A data frame with an existing column of X-SAMPA characters.}
+\item{data}{A data frame with an existing column of phonetic characters.}
 
-\item{col}{A string containing the name of the column with X-SAMPA characters
+\item{col}{A string containing the name of the column with phonetic characters
 in \code{data}.}
 
 \item{feature}{One or more strings containing the features to be added.}
@@ -17,13 +17,16 @@ in \code{data}.}
 \item{lookup}{A data frame containing a lookup table with feature values.
 \code{lookup} is optional; if left blank, a lookup table will be generated using
 \code{\link[=update_lookup]{update_lookup()}}.}
+
+\item{ipa}{A Boolean indicating whether the phonetic characters in \code{col} are
+IPA characters. Default is \code{FALSE}.}
 }
 \value{
 A data frame identical to \code{data} but with columns added for the
 specified feature(s).
 }
 \description{
-Given a data frame with a column of X-SAMPA characters, \code{add_features()} can
+Given a data frame with a column of phonetic characters, \code{add_features()} can
 be used to create an identical data frame with columns added containing
 user-specified articulatory features.
 }
@@ -39,4 +42,7 @@ no other lookup table is provided; \code{\link[=feature_assign]{feature_assign()
 assign features to unknown characters; \code{\link[=feature_reassign]{feature_reassign()}} which is used
 to change the generic feature values provided by \code{\link[=update_lookup]{update_lookup()}};
 \code{\link[=feature_lookup]{feature_lookup()}} which is used under the hood to look up feature values.
+
+\code{\link[ipa:ipa]{ipa::ipa()}} is used to convert X-SAMPA characters into IPA characters if
+\code{ipa=TRUE}.
 }

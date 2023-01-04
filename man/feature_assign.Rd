@@ -30,11 +30,26 @@ A data frame containing a feature lookup table.
 \code{feature_assign()} is used to create a new feature lookup table with
 added unknown X-SAMPA characters.
 }
+\details{
+Note that features assigned to new characters will be inherited by
+versions of that character with diacritics. For example, if the character
+\code{ph} is copied from \code{p} with the value \code{aspirated} for the feature \code{lar},
+then passing \code{ph_G} to \code{\link[=feature_lookup]{feature_lookup()}} will return a velarized aspirated
+stop (see the final example below). If you need to override this, \code{ph_G} must
+be manually assigned features.
+
+\code{feature_reassign()} does not presently support IPA
+characters. The function \code{\link[ipa:ipa]{ipa::ipa()}} is used under the hood to convert IPA
+characters to X-SAMPA, and if you are using characters that are not known
+to \code{\link[ipa:ipa]{ipa::ipa()}}, the functionality in this package will fail.
+}
 \examples{
 x <- feature_assign(new='ph', feature='lar', val='aspirated', copy='p')
 tail(x)
 y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
 tail(y)
+###
+feature_lookup(sampa='ph_G', feature=c('lar', 'modifications'), lookup=x)
 }
 \seealso{
 \code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if
