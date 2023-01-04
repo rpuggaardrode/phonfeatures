@@ -20,7 +20,7 @@ update_lookup <- function() {
 
   tmp[,'length'] <- 'short'
   tmp[,'modifications'] <- NA
-  tmp[,'syllabic'] = dplyr::case_when(
+  tmp[,'syllabic'] <- dplyr::case_when(
     tmp[,'manner'] == 'vowel' ~ 'yes',
     TRUE ~ 'no')
   tmp[,'release'] <- dplyr::case_when(
