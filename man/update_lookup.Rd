@@ -2,15 +2,15 @@
 % Please edit documentation in R/update_lookup.R
 \name{update_lookup}
 \alias{update_lookup}
-\title{Update feature lookup file with redundant features}
+\title{Create feature lookup table with generic features}
 \usage{
 update_lookup()
 }
 \value{
-A data frame
+A data frame containing a feature lookup table
 }
 \description{
-Update feature lookup file with redundant features
+Create feature lookup table with generic features
 }
 \examples{
 x <- update_lookup()

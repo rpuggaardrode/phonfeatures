@@ -16,11 +16,11 @@ feature_assign(new, feature = NA, val = NA, copy = NA, lookup = NULL)
 \item{copy}{A string containing an existing character in the lookup table for which other
 features are copied}
 
-\item{lookup}{A data frame containing a lookup table with feature values. \code{param} is optional;
+\item{lookup}{A data frame containing a lookup table with feature values. \code{lookup} is optional;
 if left blank, a lookup table will be generated using \code{update_lookup}}
 }
 \value{
-A data frame
+A data frame containing a feature lookup table
 }
 \description{
 Assign features to unknown X-SAMPA character
