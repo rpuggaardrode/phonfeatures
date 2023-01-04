@@ -2,7 +2,7 @@
 % Please edit documentation in R/feature_lookup.R
 \name{feature_lookup}
 \alias{feature_lookup}
-\title{Look up articulatory features for X-SAMPA character}
+\title{Look up articulatory features}
 \usage{
 feature_lookup(
   sampa,
@@ -13,23 +13,35 @@ feature_lookup(
 )
 }
 \arguments{
-\item{sampa}{A string containing an X-SAMPA character}
+\item{sampa}{A string containing an X-SAMPA character.}
 
 \item{feature}{One or more strings specifying the features to look up;
 if left blank, all pre-specified feature are returned.}
 
-\item{lookup}{A data frame containing a lookup table with feature values. \code{lookup} is optional;
-if left blank, a lookup table will be generated using \code{update_lookup}}
+\item{lookup}{A data frame containing a lookup table with feature values.
+\code{lookup} is optional; if left blank, a lookup table will be generated using
+\code{\link[=update_lookup]{update_lookup()}}.}
 }
 \value{
 A character object or data frame containing the requested feature(s)
 }
 \description{
-Look up articulatory features for X-SAMPA character
+Given an X-SAMPA character, \code{feature_lookup()} can be used to return one or
+more articulatory feature values. \code{feature_lookup()} can be used to check
+whether the generic feature values provided by \code{\link[=update_lookup]{update_lookup()}} are in
+agreement with the user's needs, and the function is used under the hood for
+the \code{\link[=add_features]{add_features()}} function.
 }
 \examples{
 feature_lookup(sampa='p_h')
 feature_lookup(sampa='p_h', feature='place')
 x <- feature_reassign(sampa='t', feature='place', val='dental')
 feature_lookup(sampa='t', feature='place', lookup=x)
+}
+\seealso{
+\code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if
+no other lookup table is provided; \code{\link[=feature_assign]{feature_assign()}} which is used to
+assign features to unknown characters; \code{\link[=feature_reassign]{feature_reassign()}} which is used
+to change the generic feature values provided by \code{\link[=update_lookup]{update_lookup()}};
+\code{\link[=add_features]{add_features()}} which is used to add feature column(s) to a data frame.
 }

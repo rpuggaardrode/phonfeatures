@@ -1,12 +1,24 @@
-#' Look up articulatory features for X-SAMPA character
+#' Look up articulatory features
 #'
-#' @param sampa A string containing an X-SAMPA character
+#' Given an X-SAMPA character, `feature_lookup()` can be used to return one or
+#' more articulatory feature values. `feature_lookup()` can be used to check
+#' whether the generic feature values provided by [update_lookup()] are in
+#' agreement with the user's needs, and the function is used under the hood for
+#' the [add_features()] function.
+#'
+#' @param sampa A string containing an X-SAMPA character.
 #' @param feature One or more strings specifying the features to look up;
 #' if left blank, all pre-specified feature are returned.
-#' @param lookup A data frame containing a lookup table with feature values. `lookup` is optional;
-#' if left blank, a lookup table will be generated using `update_lookup`
+#' @param lookup A data frame containing a lookup table with feature values.
+#' `lookup` is optional; if left blank, a lookup table will be generated using
+#' [update_lookup()].
 #'
 #' @return A character object or data frame containing the requested feature(s)
+#' @seealso [update_lookup()] which generates a generic feature lookup table if
+#' no other lookup table is provided; [feature_assign()] which is used to
+#' assign features to unknown characters; [feature_reassign()] which is used
+#' to change the generic feature values provided by [update_lookup()];
+#' [add_features()] which is used to add feature column(s) to a data frame.
 #' @export
 #'
 #' @examples
@@ -19,6 +31,8 @@ feature_lookup <- function (sampa, feature=c('height', 'backness', 'roundness',
                                              'major_manner', 'lar', 'voice', 'length',
                                              'modifications', 'syllabic', 'release',
                                              'nasalization', 'tone'), lookup=NULL) {
+
+  sampa <- stringr::str_replace(sampa, '\\\\', '/')
 
   if (!(is.null(lookup))) {
     tmp <- lookup

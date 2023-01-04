@@ -2,16 +2,25 @@
 % Please edit documentation in R/update_lookup.R
 \name{update_lookup}
 \alias{update_lookup}
-\title{Create feature lookup table with generic features}
+\title{Create feature lookup table}
 \usage{
 update_lookup()
 }
 \value{
-A data frame containing a feature lookup table
+A data frame containing a feature lookup table.
 }
 \description{
-Create feature lookup table with generic features
+\code{update_lookup} creates a lookup table with generic articulatory features
+for standard X-SAMPA characters.
 }
 \examples{
 x <- update_lookup()
+head(x)
+}
+\seealso{
+\code{\link[=feature_assign]{feature_assign()}} which is used to assign features to unknown
+characters; \code{\link[=feature_reassign]{feature_reassign()}} which is used to change the generic feature
+values provided by \code{\link[=update_lookup]{update_lookup()}}; \code{\link[=feature_lookup]{feature_lookup()}} which is used under
+the hood to look up feature values; \code{\link[=add_features]{add_features()}} which is used to add
+feature column(s) to a data frame.
 }

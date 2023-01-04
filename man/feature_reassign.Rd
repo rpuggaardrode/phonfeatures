@@ -7,20 +7,24 @@
 feature_reassign(sampa, feature = NA, val = NA, lookup = NULL)
 }
 \arguments{
-\item{sampa}{String containing existing X-SAMPA characters to be modified}
+\item{sampa}{String containing existing X-SAMPA characters to be modified.}
 
-\item{feature}{One or more strings specifying the features to be changed}
+\item{feature}{One or more strings specifying the features to be changed.}
 
-\item{val}{One or more strings specifying the values to be associated with the \code{feature}s}
+\item{val}{One or more strings specifying the values to be associated with
+the \code{feature}s.}
 
-\item{lookup}{A data frame containing a lookup table with feature values. \code{lookup} is optional;
-if left blank, a lookup table will be generated using \code{update_lookup}}
+\item{lookup}{A data frame containing a lookup table with feature values.
+\code{lookup} is optional; if left blank, a lookup table will be generated using
+\code{\link[=update_lookup]{update_lookup()}}.}
 }
 \value{
-A data frame containing a feature lookup table
+A data frame containing a feature lookup table.
 }
 \description{
-Change feature values for X-SAMPA character
+\code{feature_reassign()} is used to create a new feature lookup table for X-SAMPA
+characters if the user wishes to assign different (non-standard) feature
+values to existing characters.
 }
 \examples{
 lkup <- update_lookup()
@@ -29,4 +33,11 @@ x <- feature_reassign(sampa='t', feature='place', val='dental')
 x[x$segm=='t',]
 y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 y[y$segm=='d',]
+}
+\seealso{
+\code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if
+no other lookup table is provided; \code{\link[=feature_assign]{feature_assign()}} which is used to
+assign features to unknown characters; \code{\link[=feature_lookup]{feature_lookup()}} which is used under
+the hood to look up feature values. \code{\link[=add_features]{add_features()}} which is used to add
+feature column(s) to a data frame.
 }

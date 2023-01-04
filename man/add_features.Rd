@@ -2,29 +2,41 @@
 % Please edit documentation in R/add_features.R
 \name{add_features}
 \alias{add_features}
-\title{Add articulatory features for data frame based on column of X-SAMPA characters}
+\title{Add articulatory features to data frame}
 \usage{
 add_features(data, col, feature, lookup = NULL)
 }
 \arguments{
-\item{data}{A data frame with an existing column of X-SAMPA characters}
+\item{data}{A data frame with an existing column of X-SAMPA characters.}
 
-\item{col}{A string containing the name of the column with X-SAMPA characters in \code{data}}
+\item{col}{A string containing the name of the column with X-SAMPA characters
+in \code{data}.}
 
-\item{feature}{Òne or more strings containing the features to be added}
+\item{feature}{One or more strings containing the features to be added.}
 
-\item{lookup}{A data frame containing a lookup table with feature values. \code{lookup} is optional;
-if left blank, a lookup table will be generated using \code{update_lookup}}
+\item{lookup}{A data frame containing a lookup table with feature values.
+\code{lookup} is optional; if left blank, a lookup table will be generated using
+\code{\link[=update_lookup]{update_lookup()}}.}
 }
 \value{
-A data frame identical to \code{data} but with columns added for the specified feature(s)
+A data frame identical to \code{data} but with columns added for the
+specified feature(s).
 }
 \description{
-Add articulatory features for data frame based on column of X-SAMPA characters
+Given a data frame with a column of X-SAMPA characters, \code{add_features()} can
+be used to create an identical data frame with columns added containing
+user-specified articulatory features.
 }
 \examples{
 x <- data.frame(x=1:8, y=c('p', 'p_h', 'd', 't', 't_h', 't:', 't:_>', 't:_}'))
 print(x)
 y <- add_features(data=x, col='y', feature=c('place', 'lar', 'release', 'length'))
 print(y)
+}
+\seealso{
+\code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if
+no other lookup table is provided; \code{\link[=feature_assign]{feature_assign()}} which is used to
+assign features to unknown characters; \code{\link[=feature_reassign]{feature_reassign()}} which is used
+to change the generic feature values provided by \code{\link[=update_lookup]{update_lookup()}};
+\code{\link[=feature_lookup]{feature_lookup()}} which is used under the hood to look up feature values.
 }

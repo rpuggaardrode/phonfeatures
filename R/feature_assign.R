@@ -1,14 +1,26 @@
-#' Assign features to unknown X-SAMPA character
+#' Assign features to X-SAMPA character
 #'
-#' @param new A string containing the character to be added to the X-SAMPA lookup table
-#' @param feature One or more strings specifying the features to be associated with `new`
-#' @param val One or more strings specifying the values to be associated with the `feature`s
-#' @param copy A string containing an existing character in the lookup table for which other
-#' features are copied
-#' @param lookup A data frame containing a lookup table with feature values. `lookup` is optional;
-#' if left blank, a lookup table will be generated using `update_lookup`
+#' `feature_assign()` is used to create a new feature lookup table with
+#' added unknown X-SAMPA characters.
 #'
-#' @return A data frame containing a feature lookup table
+#' @param new A string containing the character to be added to the X-SAMPA
+#' lookup table.
+#' @param feature One or more strings specifying the features to be associated
+#' with `new`.
+#' @param val One or more strings specifying the values to be associated with
+#' the `feature`s.
+#' @param copy A string containing an existing character in the lookup table for
+#' which other features are copied.
+#' @param lookup A data frame containing a lookup table with feature values.
+#' `lookup` is optional; if left blank, a lookup table will be generated using
+#' [update_lookup()].
+#'
+#' @return A data frame containing a feature lookup table.
+#' @seealso [update_lookup()] which generates a generic feature lookup table if
+#' no other lookup table is provided; [feature_lookup()] which is used under
+#' the hood to look up feature values; [feature_reassign()] which is used
+#' to change the generic feature values provided by [update_lookup()];
+#' [add_features()] which is used to add feature column(s) to a data frame.
 #' @export
 #'
 #' @examples

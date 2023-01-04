@@ -2,32 +2,44 @@
 % Please edit documentation in R/feature_assign.R
 \name{feature_assign}
 \alias{feature_assign}
-\title{Assign features to unknown X-SAMPA character}
+\title{Assign features to X-SAMPA character}
 \usage{
 feature_assign(new, feature = NA, val = NA, copy = NA, lookup = NULL)
 }
 \arguments{
-\item{new}{A string containing the character to be added to the X-SAMPA lookup table}
+\item{new}{A string containing the character to be added to the X-SAMPA
+lookup table.}
 
-\item{feature}{One or more strings specifying the features to be associated with \code{new}}
+\item{feature}{One or more strings specifying the features to be associated
+with \code{new}.}
 
-\item{val}{One or more strings specifying the values to be associated with the \code{feature}s}
+\item{val}{One or more strings specifying the values to be associated with
+the \code{feature}s.}
 
-\item{copy}{A string containing an existing character in the lookup table for which other
-features are copied}
+\item{copy}{A string containing an existing character in the lookup table for
+which other features are copied.}
 
-\item{lookup}{A data frame containing a lookup table with feature values. \code{lookup} is optional;
-if left blank, a lookup table will be generated using \code{update_lookup}}
+\item{lookup}{A data frame containing a lookup table with feature values.
+\code{lookup} is optional; if left blank, a lookup table will be generated using
+\code{\link[=update_lookup]{update_lookup()}}.}
 }
 \value{
-A data frame containing a feature lookup table
+A data frame containing a feature lookup table.
 }
 \description{
-Assign features to unknown X-SAMPA character
+\code{feature_assign()} is used to create a new feature lookup table with
+added unknown X-SAMPA characters.
 }
 \examples{
 x <- feature_assign(new='ph', feature='lar', val='aspirated', copy='p')
 tail(x)
 y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
 tail(y)
+}
+\seealso{
+\code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if
+no other lookup table is provided; \code{\link[=feature_lookup]{feature_lookup()}} which is used under
+the hood to look up feature values; \code{\link[=feature_reassign]{feature_reassign()}} which is used
+to change the generic feature values provided by \code{\link[=update_lookup]{update_lookup()}};
+\code{\link[=add_features]{add_features()}} which is used to add feature column(s) to a data frame.
 }
