@@ -59,7 +59,8 @@ corresponding to the IPA string you wish to modify, \code{\link[=add_features]{a
 \examples{
 lkup <- update_lookup()
 lkup[lkup$segm=='t'|lkup$segm=='d',]
-x <- feature_reassign(sampa='t', feature='place', val='dental')
+x <- feature_reassign(sampa='t', feature=c('lar','place'),
+                      val=c('aspirated','dental'))
 x[x$segm=='t',]
 y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 y[y$segm=='d',]

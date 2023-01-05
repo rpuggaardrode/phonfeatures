@@ -54,7 +54,8 @@
 #' @examples
 #' x <- feature_assign(new='ph', feature='lar', val='aspirated', copy='p')
 #' tail(x)
-#' y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
+#' y <- feature_assign(new='th', feature=c('lar', 'place'),
+#'                     val=c('aspirated', 'dental'), copy='t', lookup=x)
 #' tail(y)
 #' ### If copy is left blank, NA's will be generated for unspecified features
 #' z <- feature_assign(new='ph', feature='lar', val='aspirated')
@@ -91,7 +92,7 @@ feature_assign <- function(new,
 
   tmp[i+1,'segm'] <- new
 
-  if (!is.na(feature) && !is.na(val)) {
+  if (any(!is.na(feature)) && any(!is.na(val))) {
     tmp[i+1,feature] <- val
   }
 

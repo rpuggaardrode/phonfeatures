@@ -50,7 +50,8 @@
 #' @examples
 #' lkup <- update_lookup()
 #' lkup[lkup$segm=='t'|lkup$segm=='d',]
-#' x <- feature_reassign(sampa='t', feature='place', val='dental')
+#' x <- feature_reassign(sampa='t', feature=c('lar','place'),
+#'                       val=c('aspirated','dental'))
 #' x[x$segm=='t',]
 #' y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 #' y[y$segm=='d',]
@@ -75,7 +76,7 @@ feature_reassign <- function(sampa,
     stop(paste0(sampa, ' does not exist in the lookup table'))
   }
 
-  if (!is.na(feature) && !is.na(val)) {
+  if (any(!is.na(feature)) && any(!is.na(val))) {
     tmp[r,feature] <- val
   }
 
