@@ -39,7 +39,7 @@
 #' y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 #' y[y$segm=='d',]
 #' ###
-#' feature_lookup(sampa='d', feature='place', lookup=x, ipa=TRUE)
+#' feature_lookup(phon='d', feature='place', lookup=x, ipa=TRUE)
 feature_reassign <- function(sampa,
                              feature=NA,
                              val=NA,

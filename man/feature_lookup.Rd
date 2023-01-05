@@ -5,7 +5,7 @@
 \title{Look up articulatory features}
 \usage{
 feature_lookup(
-  sampa,
+  phon,
   feature = c("height", "backness", "roundness", "place", "major_place", "manner",
     "major_manner", "lar", "voice", "length", "modifications", "syllabic", "release",
     "nasalization", "tone"),
@@ -14,7 +14,7 @@ feature_lookup(
 )
 }
 \arguments{
-\item{sampa}{A string containing a phonetic character.}
+\item{phon}{A string containing a phonetic character.}
 
 \item{feature}{One or more strings specifying the features to look up;
 if left blank, all pre-specified feature are returned.}
@@ -37,13 +37,13 @@ agreement with the user's needs, and the function is used under the hood for
 the \code{\link[=add_features]{add_features()}} function.
 }
 \examples{
-feature_lookup(sampa='p_h')
-feature_lookup(sampa='p_h', feature='place')
+feature_lookup(phon='p_h')
+feature_lookup(phon='p_h', feature='place')
 x <- feature_reassign(sampa='t', feature='place', val='dental')
-feature_lookup(sampa='t', feature='place', lookup=x)
+feature_lookup(phon='t', feature='place', lookup=x)
 ###
-feature_lookup(sampa='2', feature='roundness')
-feature_lookup(sampa='ø', feature='roundness', ipa=TRUE)
+feature_lookup(phon='2', feature='roundness')
+feature_lookup(phon='ø', feature='roundness', ipa=TRUE)
 }
 \seealso{
 \code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if

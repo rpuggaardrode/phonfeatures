@@ -46,7 +46,7 @@ x[x$segm=='t',]
 y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 y[y$segm=='d',]
 ###
-feature_lookup(sampa='d', feature='place', lookup=x, ipa=TRUE)
+feature_lookup(phon='d', feature='place', lookup=x, ipa=TRUE)
 }
 \seealso{
 \code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if

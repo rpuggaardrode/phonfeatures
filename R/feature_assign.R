@@ -41,7 +41,7 @@
 #' y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
 #' tail(y)
 #' ###
-#' feature_lookup(sampa='ph_G', feature=c('lar', 'modifications'), lookup=x)
+#' feature_lookup(phon='ph_G', feature=c('lar', 'modifications'), lookup=x)
 feature_assign <- function(new,
                            feature=NA,
                            val=NA,

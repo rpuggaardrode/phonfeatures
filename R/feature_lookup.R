@@ -29,7 +29,7 @@
 #' @examples
 #' feature_lookup(phon='p_h')
 #' feature_lookup(phon='p_h', feature='place')
-#' x <- feature_reassign(phon='t', feature='place', val='dental')
+#' x <- feature_reassign(sampa='t', feature='place', val='dental')
 #' feature_lookup(phon='t', feature='place', lookup=x)
 #' ###
 #' feature_lookup(phon='2', feature='roundness')

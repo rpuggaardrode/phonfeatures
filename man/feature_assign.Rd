@@ -49,7 +49,7 @@ tail(x)
 y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
 tail(y)
 ###
-feature_lookup(sampa='ph_G', feature=c('lar', 'modifications'), lookup=x)
+feature_lookup(phon='ph_G', feature=c('lar', 'modifications'), lookup=x)
 }
 \seealso{
 \code{\link[=update_lookup]{update_lookup()}} which generates a generic feature lookup table if
