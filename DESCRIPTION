@@ -1,11 +1,11 @@
-Package: sampafeatures
-Title: Assign articulatory features to X-SAMPA characters
+Package: phonfeatures
+Title: Assign articulatory features to phonetic characters
 Version: 0.0.0.9000
 Authors@R: 
     person("Rasmus", "Puggaard-Rode", , "r.puggaard@phonetik.uni-muenchen.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-4522-9987"))
-Description: Adds columns with articulatory features to a data frame based on phonetic transcription 
-    using X-SAMPA. Default articulatory features are already defined, but the user can also add 
+Description: Adds columns with articulatory features to a data frame based on phonetic transcription.
+    Default articulatory features are already defined, but the user can also add 
     non-standard X-SAMPA characters or change the default feature values.
 License: MIT + file LICENSE
 Encoding: UTF-8
