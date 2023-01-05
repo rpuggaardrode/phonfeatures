@@ -7,7 +7,7 @@
 feature_reassign(sampa, feature = NA, val = NA, lookup = NULL)
 }
 \arguments{
-\item{sampa}{String containing existing X-SAMPA characters to be modified.}
+\item{sampa}{One or more strings containing existing X-SAMPA characters to be modified.}
 
 \item{feature}{One or more strings specifying the features to be changed.
 The features for which generic features are provided are:
@@ -51,6 +51,9 @@ feature \code{dental}, then \code{t_h} will also be assigned the place feature
 \code{dental}. If you need to override this, \code{t_h} can be assigned manually using
 \code{\link[=feature_assign]{feature_assign()}}.
 
+\code{sampa} can take either a string or multiple strings, if the same feature
+needs to be changed for multiple characters. See example below.
+
 \code{feature_reassign()} does not explicitly support IPA
 characters. However, if \code{feature_reassign()} is used on an X-SAMPA string
 corresponding to the IPA string you wish to modify, \code{\link[=add_features]{add_features()}} with
@@ -64,6 +67,8 @@ x <- feature_reassign(sampa='t', feature=c('lar','place'),
 x[x$segm=='t',]
 y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 y[y$segm=='d',]
+### Alternatively,
+x <- feature_reassign(sampa=c('d', 't'), feature='place', val='dental')
 ###
 feature_lookup(phon='d', feature='place', lookup=x, ipa=TRUE)
 }

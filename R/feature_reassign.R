@@ -10,12 +10,15 @@
 #' `dental`. If you need to override this, `t_h` can be assigned manually using
 #' [feature_assign()].
 #'
+#' `sampa` can take either a string or multiple strings, if the same feature
+#' needs to be changed for multiple characters. See example below.
+#'
 #' `feature_reassign()` does not explicitly support IPA
 #' characters. However, if `feature_reassign()` is used on an X-SAMPA string
 #' corresponding to the IPA string you wish to modify, [add_features()] with
 #' `ipa=TRUE` should still give the desired result (see the last example).
 #'
-#' @param sampa String containing existing X-SAMPA characters to be modified.
+#' @param sampa One or more strings containing existing X-SAMPA characters to be modified.
 #' @param feature One or more strings specifying the features to be changed.
 #' The features for which generic features are provided are:
 #' * `height` vowel height
@@ -55,6 +58,8 @@
 #' x[x$segm=='t',]
 #' y <- feature_reassign(sampa='d', feature='place', val='dental', lookup=x)
 #' y[y$segm=='d',]
+#' ### Alternatively,
+#' x <- feature_reassign(sampa=c('d', 't'), feature='place', val='dental')
 #' ###
 #' feature_lookup(phon='d', feature='place', lookup=x, ipa=TRUE)
 feature_reassign <- function(sampa,
@@ -70,7 +75,11 @@ feature_reassign <- function(sampa,
     tmp <- update_lookup()
   }
 
-  r <- which(tmp[,1] == sampa)
+  r <- c()
+  for (i in sampa) {
+    r[i] <- which(tmp[,1] == i)
+  }
+  r <- unname(r)
 
   if (length(r)==0) {
     stop(paste0(sampa, ' does not exist in the lookup table'))
