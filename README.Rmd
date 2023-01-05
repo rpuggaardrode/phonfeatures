@@ -200,4 +200,4 @@ IPA characters.
 
 If you run into any problems using `phonfeatures`, feel free to leave a bug
 report on [GitHub][https://github.com/rpuggaardrode/phonfeatures] or reach out 
-at r.puggaard at phonetik.uni-muenchen.de
+at r.puggaard at phonetik.uni-muenchen.de.

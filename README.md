@@ -38,17 +38,17 @@ articulatory features. It could fx look like this:
 ``` r
 library(phonfeatures)
 head(test_data, 10)
-#>    Identifier IntVocIntervals     tmin tminStop     tmax age Stop
-#> 1           1               1 0.000000 0.117114 0.245914  20    d
-#> 2           2               2 0.245914 0.500935 0.798165  20    k
-#> 3           3               3 0.798165 0.961996 1.103336  20    d
-#> 4           4               4 1.103336 1.355208 1.716694  20    k
-#> 5           5               5 1.716694 1.942197 2.206374  20    k
-#> 6           6               6 2.206374 2.421583 2.546418  20    g
-#> 7           7               7 2.546418 2.626651 2.844114  20    t
-#> 8           8               8 2.844114 3.059793 3.357136  20    k
-#> 9           9               9 3.357136 3.595617 3.962371  20    k
-#> 10         10              10 3.962371 4.172536 4.462383  20    k
+#>    Identifier IntVocIntervals     tmin     tmax age Stop
+#> 1           1               1 0.000000 0.245914  20    d
+#> 2           2               2 0.245914 0.798165  20    k
+#> 3           3               3 0.798165 1.103336  20    d
+#> 4           4               4 1.103336 1.716694  20    k
+#> 5           5               5 1.716694 2.206374  20    k
+#> 6           6               6 2.206374 2.546418  20    g
+#> 7           7               7 2.546418 2.844114  20    t
+#> 8           8               8 2.844114 3.357136  20    k
+#> 9           9               9 3.357136 3.962371  20    k
+#> 10         10              10 3.962371 4.462383  20    k
 ```
 
 Say you want to add columns to this data frame with information about
@@ -58,28 +58,17 @@ column. You would proceed like this:
 ``` r
 new_data <- add_features(data=test_data, col='Stop', feature=c('place', 'lar'))
 head(new_data, 10)
-#>    Identifier IntVocIntervals     tmin tminStop     tmax age Stop    place
-#> 1           1               1 0.000000 0.117114 0.245914  20    d alveolar
-#> 2           2               2 0.245914 0.500935 0.798165  20    k    velar
-#> 3           3               3 0.798165 0.961996 1.103336  20    d alveolar
-#> 4           4               4 1.103336 1.355208 1.716694  20    k    velar
-#> 5           5               5 1.716694 1.942197 2.206374  20    k    velar
-#> 6           6               6 2.206374 2.421583 2.546418  20    g    velar
-#> 7           7               7 2.546418 2.626651 2.844114  20    t alveolar
-#> 8           8               8 2.844114 3.059793 3.357136  20    k    velar
-#> 9           9               9 3.357136 3.595617 3.962371  20    k    velar
-#> 10         10              10 3.962371 4.172536 4.462383  20    k    velar
-#>          lar
-#> 1     voiced
-#> 2  voiceless
-#> 3     voiced
-#> 4  voiceless
-#> 5  voiceless
-#> 6     voiced
-#> 7  voiceless
-#> 8  voiceless
-#> 9  voiceless
-#> 10 voiceless
+#>    Identifier IntVocIntervals     tmin     tmax age Stop    place       lar
+#> 1           1               1 0.000000 0.245914  20    d alveolar    voiced
+#> 2           2               2 0.245914 0.798165  20    k    velar voiceless
+#> 3           3               3 0.798165 1.103336  20    d alveolar    voiced
+#> 4           4               4 1.103336 1.716694  20    k    velar voiceless
+#> 5           5               5 1.716694 2.206374  20    k    velar voiceless
+#> 6           6               6 2.206374 2.546418  20    g    velar    voiced
+#> 7           7               7 2.546418 2.844114  20    t alveolar voiceless
+#> 8           8               8 2.844114 3.357136  20    k    velar voiceless
+#> 9           9               9 3.357136 3.962371  20    k    velar voiceless
+#> 10         10              10 3.962371 4.462383  20    k    velar voiceless
 ```
 
 ### Checking feature values
@@ -139,28 +128,17 @@ using the generic features:
 new_data <- add_features(data=test_data, col='Stop', feature=c('place', 'lar'),
                          lookup=dan_lkup)
 head(new_data, 10)
-#>    Identifier IntVocIntervals     tmin tminStop     tmax age Stop    place
-#> 1           1               1 0.000000 0.117114 0.245914  20    d alveolar
-#> 2           2               2 0.245914 0.500935 0.798165  20    k    velar
-#> 3           3               3 0.798165 0.961996 1.103336  20    d alveolar
-#> 4           4               4 1.103336 1.355208 1.716694  20    k    velar
-#> 5           5               5 1.716694 1.942197 2.206374  20    k    velar
-#> 6           6               6 2.206374 2.421583 2.546418  20    g    velar
-#> 7           7               7 2.546418 2.626651 2.844114  20    t alveolar
-#> 8           8               8 2.844114 3.059793 3.357136  20    k    velar
-#> 9           9               9 3.357136 3.595617 3.962371  20    k    velar
-#> 10         10              10 3.962371 4.172536 4.462383  20    k    velar
-#>          lar
-#> 1  voiceless
-#> 2  aspirated
-#> 3  voiceless
-#> 4  aspirated
-#> 5  aspirated
-#> 6  voiceless
-#> 7  aspirated
-#> 8  aspirated
-#> 9  aspirated
-#> 10 aspirated
+#>    Identifier IntVocIntervals     tmin     tmax age Stop    place       lar
+#> 1           1               1 0.000000 0.245914  20    d alveolar voiceless
+#> 2           2               2 0.245914 0.798165  20    k    velar aspirated
+#> 3           3               3 0.798165 1.103336  20    d alveolar voiceless
+#> 4           4               4 1.103336 1.716694  20    k    velar aspirated
+#> 5           5               5 1.716694 2.206374  20    k    velar aspirated
+#> 6           6               6 2.206374 2.546418  20    g    velar voiceless
+#> 7           7               7 2.546418 2.844114  20    t alveolar aspirated
+#> 8           8               8 2.844114 3.357136  20    k    velar aspirated
+#> 9           9               9 3.357136 3.962371  20    k    velar aspirated
+#> 10         10              10 3.962371 4.462383  20    k    velar aspirated
 ```
 
 ### IPA and X-SAMPA
@@ -177,28 +155,17 @@ just ran:
 new_data <- add_features(data=test_data, col='Stop', feature=c('place', 'lar'),
                          lookup=dan_lkup, ipa=TRUE)
 head(new_data, 10)
-#>    Identifier IntVocIntervals     tmin tminStop     tmax age Stop    place
-#> 1           1               1 0.000000 0.117114 0.245914  20    d alveolar
-#> 2           2               2 0.245914 0.500935 0.798165  20    k    velar
-#> 3           3               3 0.798165 0.961996 1.103336  20    d alveolar
-#> 4           4               4 1.103336 1.355208 1.716694  20    k    velar
-#> 5           5               5 1.716694 1.942197 2.206374  20    k    velar
-#> 6           6               6 2.206374 2.421583 2.546418  20    g    velar
-#> 7           7               7 2.546418 2.626651 2.844114  20    t alveolar
-#> 8           8               8 2.844114 3.059793 3.357136  20    k    velar
-#> 9           9               9 3.357136 3.595617 3.962371  20    k    velar
-#> 10         10              10 3.962371 4.172536 4.462383  20    k    velar
-#>          lar
-#> 1  voiceless
-#> 2  aspirated
-#> 3  voiceless
-#> 4  aspirated
-#> 5  aspirated
-#> 6  voiceless
-#> 7  aspirated
-#> 8  aspirated
-#> 9  aspirated
-#> 10 aspirated
+#>    Identifier IntVocIntervals     tmin     tmax age Stop    place       lar
+#> 1           1               1 0.000000 0.245914  20    d alveolar voiceless
+#> 2           2               2 0.245914 0.798165  20    k    velar aspirated
+#> 3           3               3 0.798165 1.103336  20    d alveolar voiceless
+#> 4           4               4 1.103336 1.716694  20    k    velar aspirated
+#> 5           5               5 1.716694 2.206374  20    k    velar aspirated
+#> 6           6               6 2.206374 2.546418  20    g    velar voiceless
+#> 7           7               7 2.546418 2.844114  20    t alveolar aspirated
+#> 8           8               8 2.844114 3.357136  20    k    velar aspirated
+#> 9           9               9 3.357136 3.962371  20    k    velar aspirated
+#> 10         10              10 3.962371 4.462383  20    k    velar aspirated
 ```
 
 It makes no difference of course! /b d g p t k/ are identical in IPA and
@@ -300,4 +267,4 @@ unknown IPA characters.
 If you run into any problems using `phonfeatures`, feel free to leave a
 bug report on
 \[GitHub\]\[<https://github.com/rpuggaardrode/phonfeatures>\] or reach
-out at r.puggaard at phonetik.uni-muenchen.de
+out at r.puggaard at phonetik.uni-muenchen.de.
