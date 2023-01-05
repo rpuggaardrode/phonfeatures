@@ -22,7 +22,7 @@
 #' * `backness` vowel backness
 #' * `roundness` vowel roundness
 #' * `place` consonant place of articulation
-#' * `major place` major place features (coronal, dorsal, etc.)
+#' * `major_place` major place features (coronal, dorsal, etc.)
 #' * `manner` manner of articulation
 #' * `major_manner` major manner features (obstruent, sonorant)
 #' * `lar` laryngeal features

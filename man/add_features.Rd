@@ -20,7 +20,7 @@ New features can be added by the user with \code{\link[=feature_assign]{feature_
 \item \code{backness} vowel backness
 \item \code{roundness} vowel roundness
 \item \code{place} consonant place of articulation
-\item \verb{major place} major place features (coronal, dorsal, etc.)
+\item \code{major_place} major place features (coronal, dorsal, etc.)
 \item \code{manner} manner of articulation
 \item \code{major_manner} major manner features (obstruent, sonorant)
 \item \code{lar} laryngeal features

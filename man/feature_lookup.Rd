@@ -23,7 +23,7 @@ if left blank, all pre-specified feature are returned. These are:
 \item \code{backness} vowel backness
 \item \code{roundness} vowel roundness
 \item \code{place} consonant place of articulation
-\item \verb{major place} major place features (coronal, dorsal, etc.)
+\item \code{major_place} major place features (coronal, dorsal, etc.)
 \item \code{manner} manner of articulation
 \item \code{major_manner} major manner features (obstruent, sonorant)
 \item \code{lar} laryngeal features
