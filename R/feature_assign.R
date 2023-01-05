@@ -38,7 +38,8 @@
 #' @param val One or more strings specifying the values to be associated with
 #' the `feature`s.
 #' @param copy A string containing an existing character in the lookup table from
-#' which other features are copied.
+#' which other features are copied, or an existing character with known
+#' diacritics.
 #' @param lookup A data frame containing a lookup table with feature values.
 #' `lookup` is optional; if left blank, a lookup table will be generated using
 #' [update_lookup()].
@@ -80,13 +81,13 @@ feature_assign <- function(new,
 
   if (!is.na(copy)) {
 
-    r <- which(tmp[,1] == copy)
-
-    if (length(r)==0) {
-      stop(paste0(copy, ' does not exist in the lookup table'))
+    if(any(tmp[,1] == copy)){
+      r <- which(tmp[,1] == copy)
+      tmp[i+1,] <- tmp[r,]
+    } else {
+      fl <- unname(feature_lookup(copy))
+      tmp[i+1,2:16] <- fl
     }
-
-    tmp[i+1,] <- tmp[r,]
 
   }
 

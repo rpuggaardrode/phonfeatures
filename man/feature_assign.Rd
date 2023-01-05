@@ -35,7 +35,8 @@ The features for which generic features are provided are:
 the \code{feature}s.}
 
 \item{copy}{A string containing an existing character in the lookup table from
-which other features are copied.}
+which other features are copied, or an existing character with known
+diacritics.}
 
 \item{lookup}{A data frame containing a lookup table with feature values.
 \code{lookup} is optional; if left blank, a lookup table will be generated using
