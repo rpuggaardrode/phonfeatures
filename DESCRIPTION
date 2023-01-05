@@ -11,11 +11,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-URL: https://github.com/rpuggaardrode/sampafeatures
-BugReports: https://github.com/rpuggaardrode/sampafeatures/issues
+URL: https://github.com/rpuggaardrode/phonfeatures
+BugReports: https://github.com/rpuggaardrode/phonfeatures/issues
 Imports: 
     dplyr,
     ipa,
     stringr
 Depends: 
     R (>= 4.1)
+LazyData: true
