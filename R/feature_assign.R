@@ -19,9 +19,25 @@
 #' lookup table.
 #' @param feature One or more strings specifying the features to be associated
 #' with `new`.
+#' The features for which generic features are provided are:
+#' * `height` vowel height
+#' * `backness` vowel backness
+#' * `roundness` vowel roundness
+#' * `place` consonant place of articulation
+#' * `major place` major place features (coronal, dorsal, etc.)
+#' * `manner` manner of articulation
+#' * `major_manner` major manner features (obstruent, sonorant)
+#' * `lar` laryngeal features
+#' * `voice` binary voicing feature
+#' * `length`
+#' * `modifications` associated with diacritics, such as `velarized`, `palatalized`, etc.
+#' * `syllabic`
+#' * `release` modifying diacritics for (mostly) stop releases
+#' * `nasalization`
+#' * `tone`
 #' @param val One or more strings specifying the values to be associated with
 #' the `feature`s.
-#' @param copy A string containing an existing character in the lookup table for
+#' @param copy A string containing an existing character in the lookup table from
 #' which other features are copied.
 #' @param lookup A data frame containing a lookup table with feature values.
 #' `lookup` is optional; if left blank, a lookup table will be generated using
@@ -40,6 +56,9 @@
 #' tail(x)
 #' y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
 #' tail(y)
+#' ### If copy is left blank, NA's will be generated for unspecified features
+#' z <- feature_assign(new='ph', feature='lar', val='aspirated')
+#' tail(z)
 #' ###
 #' feature_lookup(phon='ph_G', feature=c('lar', 'modifications'), lookup=x)
 feature_assign <- function(new,

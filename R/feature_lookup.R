@@ -8,12 +8,30 @@
 #'
 #' @param phon A string containing a phonetic character.
 #' @param feature One or more strings specifying the features to look up;
-#' if left blank, all pre-specified feature are returned.
+#' if left blank, all pre-specified feature are returned. These are:
+#' * `height` vowel height
+#' * `backness` vowel backness
+#' * `roundness` vowel roundness
+#' * `place` consonant place of articulation
+#' * `major place` major place features (coronal, dorsal, etc.)
+#' * `manner` manner of articulation
+#' * `major_manner` major manner features (obstruent, sonorant)
+#' * `lar` laryngeal features
+#' * `voice` binary voicing feature
+#' * `length`
+#' * `modifications` associated with diacritics, such as `velarized`, `palatalized`, etc.
+#' * `syllabic`
+#' * `release` modifying diacritics for (mostly) stop releases
+#' * `nasalization`
+#' * `tone`
 #' @param lookup A data frame containing a lookup table with feature values.
-#' `lookup` is optional; if left blank, a lookup table will be generated using
-#' [update_lookup()].
-#' @param ipa A Boolean indicating whether the phonetic characters in `col` are
-#' IPA characters. Default is `FALSE`.
+#' `lookup` is optional; if left blank, a generic lookup table will be generated
+#' using [update_lookup()]. Updated lookup tables can be generated with
+#' [feature_reassign()] if different feature values are needed and
+#' [feature_assign()] unknown characters are needed.
+#' @param ipa A Boolean.
+#' * `FALSE` (default) The phonetic characters in `col` are X-SAMPA.
+#' * `TRUE` The phonetic characters in `col` are IPA.
 #'
 #' @return A character object or data frame containing the requested feature(s)
 #' @seealso [update_lookup()] which generates a generic feature lookup table if

@@ -11,12 +11,30 @@ feature_assign(new, feature = NA, val = NA, copy = NA, lookup = NULL)
 lookup table.}
 
 \item{feature}{One or more strings specifying the features to be associated
-with \code{new}.}
+with \code{new}.
+The features for which generic features are provided are:
+\itemize{
+\item \code{height} vowel height
+\item \code{backness} vowel backness
+\item \code{roundness} vowel roundness
+\item \code{place} consonant place of articulation
+\item \verb{major place} major place features (coronal, dorsal, etc.)
+\item \code{manner} manner of articulation
+\item \code{major_manner} major manner features (obstruent, sonorant)
+\item \code{lar} laryngeal features
+\item \code{voice} binary voicing feature
+\item \code{length}
+\item \code{modifications} associated with diacritics, such as \code{velarized}, \code{palatalized}, etc.
+\item \code{syllabic}
+\item \code{release} modifying diacritics for (mostly) stop releases
+\item \code{nasalization}
+\item \code{tone}
+}}
 
 \item{val}{One or more strings specifying the values to be associated with
 the \code{feature}s.}
 
-\item{copy}{A string containing an existing character in the lookup table for
+\item{copy}{A string containing an existing character in the lookup table from
 which other features are copied.}
 
 \item{lookup}{A data frame containing a lookup table with feature values.
@@ -48,6 +66,9 @@ x <- feature_assign(new='ph', feature='lar', val='aspirated', copy='p')
 tail(x)
 y <- feature_assign(new='th', feature='lar', val='aspirated', copy='t', lookup=x)
 tail(y)
+### If copy is left blank, NA's will be generated for unspecified features
+z <- feature_assign(new='ph', feature='lar', val='aspirated')
+tail(z)
 ###
 feature_lookup(phon='ph_G', feature=c('lar', 'modifications'), lookup=x)
 }

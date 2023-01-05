@@ -9,7 +9,25 @@ feature_reassign(sampa, feature = NA, val = NA, lookup = NULL)
 \arguments{
 \item{sampa}{String containing existing X-SAMPA characters to be modified.}
 
-\item{feature}{One or more strings specifying the features to be changed.}
+\item{feature}{One or more strings specifying the features to be changed.
+The features for which generic features are provided are:
+\itemize{
+\item \code{height} vowel height
+\item \code{backness} vowel backness
+\item \code{roundness} vowel roundness
+\item \code{place} consonant place of articulation
+\item \verb{major place} major place features (coronal, dorsal, etc.)
+\item \code{manner} manner of articulation
+\item \code{major_manner} major manner features (obstruent, sonorant)
+\item \code{lar} laryngeal features
+\item \code{voice} binary voicing feature
+\item \code{length}
+\item \code{modifications} associated with diacritics, such as \code{velarized}, \code{palatalized}, etc.
+\item \code{syllabic}
+\item \code{release} modifying diacritics for (mostly) stop releases
+\item \code{nasalization}
+\item \code{tone}
+}}
 
 \item{val}{One or more strings specifying the values to be associated with
 the \code{feature}s.}

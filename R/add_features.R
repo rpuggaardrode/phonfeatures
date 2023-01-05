@@ -8,11 +8,36 @@
 #' @param col A string containing the name of the column with phonetic characters
 #' in `data`.
 #' @param feature One or more strings containing the features to be added.
+#' New features can be added by the user with [feature_assign()] or
+#' [feature_reassign()] if necessary, but generic features are:
+#' * `height` vowel height
+#' * `backness` vowel backness
+#' * `roundness` vowel roundness
+#' * `place` consonant place of articulation
+#' * `major place` major place features (coronal, dorsal, etc.)
+#' * `manner` manner of articulation
+#' * `major_manner` major manner features (obstruent, sonorant)
+#' * `lar` laryngeal features
+#' * `voice` binary voicing feature
+#' * `length`
+#' * `modifications` associated with diacritics, such as `velarized`, `palatalized`, etc.
+#' * `syllabic`
+#' * `release` modifying diacritics for (mostly) stop releases
+#' * `nasalization`
+#' * `tone`
+#'
+#' The aim is for the generic feature values to be as uncontroversial as possible,
+#' but obviously not everyone will agree and the generic feature values may not
+#' be suitable for all projects. Generic feature values can be checked with
+#' [feature_lookup()], and if necessary updated if [feature_reassign()].
 #' @param lookup A data frame containing a lookup table with feature values.
-#' `lookup` is optional; if left blank, a lookup table will be generated using
-#' [update_lookup()].
-#' @param ipa A Boolean indicating whether the phonetic characters in `col` are
-#' IPA characters. Default is `FALSE`.
+#' `lookup` is optional; if left blank, a generic lookup table will be generated
+#' using [update_lookup()]. Updated lookup tables can be generated with
+#' [feature_reassign()] if different feature values are needed and
+#' [feature_assign()] unknown characters are needed.
+#' @param ipa A Boolean.
+#' * `FALSE` (default) The phonetic characters in `col` are X-SAMPA.
+#' * `TRUE` The phonetic characters in `col` are IPA.
 #'
 #' @return A data frame identical to `data` but with columns added for the
 #' specified feature(s).

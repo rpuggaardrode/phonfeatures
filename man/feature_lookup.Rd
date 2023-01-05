@@ -17,14 +17,36 @@ feature_lookup(
 \item{phon}{A string containing a phonetic character.}
 
 \item{feature}{One or more strings specifying the features to look up;
-if left blank, all pre-specified feature are returned.}
+if left blank, all pre-specified feature are returned. These are:
+\itemize{
+\item \code{height} vowel height
+\item \code{backness} vowel backness
+\item \code{roundness} vowel roundness
+\item \code{place} consonant place of articulation
+\item \verb{major place} major place features (coronal, dorsal, etc.)
+\item \code{manner} manner of articulation
+\item \code{major_manner} major manner features (obstruent, sonorant)
+\item \code{lar} laryngeal features
+\item \code{voice} binary voicing feature
+\item \code{length}
+\item \code{modifications} associated with diacritics, such as \code{velarized}, \code{palatalized}, etc.
+\item \code{syllabic}
+\item \code{release} modifying diacritics for (mostly) stop releases
+\item \code{nasalization}
+\item \code{tone}
+}}
 
 \item{lookup}{A data frame containing a lookup table with feature values.
-\code{lookup} is optional; if left blank, a lookup table will be generated using
-\code{\link[=update_lookup]{update_lookup()}}.}
+\code{lookup} is optional; if left blank, a generic lookup table will be generated
+using \code{\link[=update_lookup]{update_lookup()}}. Updated lookup tables can be generated with
+\code{\link[=feature_reassign]{feature_reassign()}} if different feature values are needed and
+\code{\link[=feature_assign]{feature_assign()}} unknown characters are needed.}
 
-\item{ipa}{A Boolean indicating whether the phonetic characters in \code{col} are
-IPA characters. Default is \code{FALSE}.}
+\item{ipa}{A Boolean.
+\itemize{
+\item \code{FALSE} (default) The phonetic characters in \code{col} are X-SAMPA.
+\item \code{TRUE} The phonetic characters in \code{col} are IPA.
+}}
 }
 \value{
 A character object or data frame containing the requested feature(s)

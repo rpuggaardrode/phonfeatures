@@ -17,6 +17,22 @@
 #'
 #' @param sampa String containing existing X-SAMPA characters to be modified.
 #' @param feature One or more strings specifying the features to be changed.
+#' The features for which generic features are provided are:
+#' * `height` vowel height
+#' * `backness` vowel backness
+#' * `roundness` vowel roundness
+#' * `place` consonant place of articulation
+#' * `major place` major place features (coronal, dorsal, etc.)
+#' * `manner` manner of articulation
+#' * `major_manner` major manner features (obstruent, sonorant)
+#' * `lar` laryngeal features
+#' * `voice` binary voicing feature
+#' * `length`
+#' * `modifications` associated with diacritics, such as `velarized`, `palatalized`, etc.
+#' * `syllabic`
+#' * `release` modifying diacritics for (mostly) stop releases
+#' * `nasalization`
+#' * `tone`
 #' @param val One or more strings specifying the values to be associated with
 #' the `feature`s.
 #' @param lookup A data frame containing a lookup table with feature values.
