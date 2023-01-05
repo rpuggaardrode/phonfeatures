@@ -145,7 +145,7 @@ head(new_data, 10)
 
 You may have noticed that the phonetic character argument in
 `feature_reassign()` is called `sampa`. This is because this function
-only works with \[X-SAMPA\]\[<https://en.wikipedia.org/wiki/X-SAMPA>\]
+only works with [X-SAMPA](https://en.wikipedia.org/wiki/X-SAMPA)
 characters. `add_features()` and `feature_lookup()` also use X-SAMPA
 characters by default, but these functions have an option to use IPA
 instead, by setting `ipa=TRUE`. Let’s see what this does to the code we
@@ -265,6 +265,5 @@ unknown IPA characters.
 ## Contact
 
 If you run into any problems using `phonfeatures`, feel free to leave a
-bug report on
-\[GitHub\]\[<https://github.com/rpuggaardrode/phonfeatures>\] or reach
-out at r.puggaard at phonetik.uni-muenchen.de.
+bug report on [GitHub](https://github.com/rpuggaardrode/phonfeatures) or
+reach out at r.puggaard at phonetik.uni-muenchen.de
