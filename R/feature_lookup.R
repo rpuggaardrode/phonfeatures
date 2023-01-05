@@ -6,7 +6,7 @@
 #' agreement with the user's needs, and the function is used under the hood for
 #' the [add_features()] function.
 #'
-#' @param sampa A string containing a phonetic character.
+#' @param phon A string containing a phonetic character.
 #' @param feature One or more strings specifying the features to look up;
 #' if left blank, all pre-specified feature are returned.
 #' @param lookup A data frame containing a lookup table with feature values.
@@ -27,14 +27,14 @@
 #' @export
 #'
 #' @examples
-#' feature_lookup(sampa='p_h')
-#' feature_lookup(sampa='p_h', feature='place')
-#' x <- feature_reassign(sampa='t', feature='place', val='dental')
-#' feature_lookup(sampa='t', feature='place', lookup=x)
+#' feature_lookup(phon='p_h')
+#' feature_lookup(phon='p_h', feature='place')
+#' x <- feature_reassign(phon='t', feature='place', val='dental')
+#' feature_lookup(phon='t', feature='place', lookup=x)
 #' ###
-#' feature_lookup(sampa='2', feature='roundness')
-#' feature_lookup(sampa='ø', feature='roundness', ipa=TRUE)
-feature_lookup <- function (sampa,
+#' feature_lookup(phon='2', feature='roundness')
+#' feature_lookup(phon='ø', feature='roundness', ipa=TRUE)
+feature_lookup <- function (phon,
                             feature=c('height', 'backness', 'roundness',
                                       'place', 'major_place', 'manner',
                                       'major_manner', 'lar', 'voice', 'length',
@@ -43,8 +43,8 @@ feature_lookup <- function (sampa,
                             lookup=NULL,
                             ipa=FALSE) {
 
-  if (ipa) {sampa <- ipa::ipa(sampa)}
-  sampa <- stringr::str_replace(sampa, '\\\\', '/')
+  if (ipa) {phon <- ipa::ipa(phon)}
+  phon <- stringr::str_replace(phon, '\\\\', '/')
 
   if (!(is.null(lookup))) {
     tmp <- lookup
@@ -53,12 +53,12 @@ feature_lookup <- function (sampa,
   }
 
   extra_mod <- (c(':', '`'))
-  if (any(stringr::str_detect(sampa, extra_mod)) && !(sampa %in% tmp[,1])) {
-    sampa <- stringr::str_replace(sampa, ':', '_:')
-    sampa <- stringr::str_replace(sampa, '`', '_`')
+  if (any(stringr::str_detect(phon, extra_mod)) && !(phon %in% tmp[,1])) {
+    phon <- stringr::str_replace(phon, ':', '_:')
+    phon <- stringr::str_replace(phon, '`', '_`')
   }
 
-  split <- unlist(stringr::str_split(sampa, '_'))
+  split <- unlist(stringr::str_split(phon, '_'))
   sim <- split[1]
   mod <- split[2:length(split)]
 
@@ -66,19 +66,19 @@ feature_lookup <- function (sampa,
 
   if (any(is.na(mod))) {
 
-    if (!(sampa %in% tmp[,1])) {
-      stop(paste0('I am unfamiliar with ', sampa,
+    if (!(phon %in% tmp[,1])) {
+      stop(paste0('I am unfamiliar with ', phon,
                   '\n Definitions for unknown characters can be added with the feature_assign() function.'))
     } else {
-      r <- which(tmp[,1] == sampa)
+      r <- which(tmp[,1] == phon)
       return(tmp[r, feature])
     }
 
   } else if(!(sim %in% tmp[,1])) {
-    stop(paste0('I am unfamiliar with ', sampa,
+    stop(paste0('I am unfamiliar with ', phon,
                 '\n Definitions for unknown characters can be added with the feature_assign() function.'))
   } else if(!any(mod %in% legal_mod)) {
-    stop(paste0('I am unfamiliar with one or more of the modifications in ', sampa,
+    stop(paste0('I am unfamiliar with one or more of the modifications in ', phon,
                 '\n I am familiar with the following modifications: ', list(legal_mod),
                 '\n Definitions for unknown characters can be added with the feature_assign() function.'))
 
@@ -86,11 +86,11 @@ feature_lookup <- function (sampa,
 
     f <- sampa_lookup_mod$feature
     v <- sampa_lookup_mod$val
-    tmp <- feature_assign(sampa, copy=sim, lookup=tmp)
+    tmp <- feature_assign(phon, copy=sim, lookup=tmp)
 
     for(m in mod){
       mr <- which(legal_mod == m)
-      tmp <- feature_reassign(sampa, f[mr], v[mr], tmp)
+      tmp <- feature_reassign(phon, f[mr], v[mr], tmp)
     }
 
     i <- nrow(tmp)
