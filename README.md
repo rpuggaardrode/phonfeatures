@@ -6,15 +6,15 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-`phonfeatures` is an R package which allows user to efficiently add
+`phonfeatures` is an R package which allows the user to efficiently add
 columns with articulatory features to existing data frames with phonetic
 characters using the function `add_features()`.
 
 The package provides several generic features for all regular IPA and
 X-SAMPA characters as well as for most diacritics. These generic
-features can be checked using the function `feature_lookup()`. The also
-provides functionality for changing the feature values of known
-characters with `feature_reassign()`, and for introducing unknown
+features can be checked using the function `feature_lookup()`. The
+package also provides functionality for changing the feature values of
+known characters with `feature_reassign()`, and for introducing unknown
 characters with `feature_assign()`.
 
 ## Installation
@@ -257,6 +257,52 @@ feature_lookup(phon='th', lookup=lkup)
 #> 103                           dental     coronal   stop    obstruent aspirated
 #>         voice length modifications syllabic  release nasalization tone
 #> 103 voiceless   long            NA       no released           no   NA
+```
+
+You can bulk add new characters using `feature_assign` assuming they can
+all be copied from known characters, or that the same feature needs to
+be manipulated for all of them. In the following code block, features
+are bulk added from known characters:
+
+``` r
+lkup <- feature_assign(new=c('ph', 'th', 'kh'),
+                       copy=c('p_h', 't_h', 'k_h'))
+tail(lkup, 3)
+#>     segm height backness roundness    place major_place manner major_manner
+#> 103   ph                           bilabial      labial   stop    obstruent
+#> 104   th                           alveolar     coronal   stop    obstruent
+#> 105   kh                              velar      dorsal   stop    obstruent
+#>           lar     voice length modifications syllabic  release nasalization
+#> 103 aspirated voiceless  short            NA       no released           no
+#> 104 aspirated voiceless  short            NA       no released           no
+#> 105 aspirated voiceless  short            NA       no released           no
+#>     tone
+#> 103   NA
+#> 104   NA
+#> 105   NA
+```
+
+Say you have been using `ph`, `th`, `kh` for preaspirated stop. They can
+be bulk added like this:
+
+``` r
+lkup <- feature_assign(new=c('hp', 'ht', 'hk'),
+                       feature='lar',
+                       val='preaspirated',
+                       copy=c('p', 't', 'k'))
+tail(lkup, 3)
+#>     segm height backness roundness    place major_place manner major_manner
+#> 103   hp                           bilabial      labial   stop    obstruent
+#> 104   ht                           alveolar     coronal   stop    obstruent
+#> 105   hk                              velar      dorsal   stop    obstruent
+#>              lar     voice length modifications syllabic  release nasalization
+#> 103 preaspirated voiceless  short            NA       no released           no
+#> 104 preaspirated voiceless  short            NA       no released           no
+#> 105 preaspirated voiceless  short            NA       no released           no
+#>     tone
+#> 103   NA
+#> 104   NA
+#> 105   NA
 ```
 
 Unfortunately, `feature_assign` does not at present allow you to add
