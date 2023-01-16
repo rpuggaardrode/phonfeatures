@@ -107,6 +107,9 @@ feature_assign <- function(new,
         tmp[i+1,2:16] <- fl
       }
 
+    } else if (any(!is.na(copy)) && length(copy) != length(new)) {
+      stop('The number of arguments passed to copy should be either 1 or
+           the same number as arguments passed to new.')
     }
 
     tmp[i+1,'segm'] <- n
