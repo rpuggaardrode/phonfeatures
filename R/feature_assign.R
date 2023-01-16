@@ -10,12 +10,12 @@
 #' stop (see the final example below). If you need to override this, `ph_G` must
 #' be manually assigned features.
 #'
-#' `feature_reassign()` does not presently support IPA
+#' `feature_assign()` does not presently support IPA
 #' characters. The function [ipa::ipa()] is used under the hood to convert IPA
 #' characters to X-SAMPA, and if you are using characters that are not known
 #' to [ipa::ipa()], the functionality in this package will fail.
 #'
-#' @param new A string containing the character to be added to the X-SAMPA
+#' @param new One or more strings containing characters to be added to the X-SAMPA
 #' lookup table.
 #' @param feature One or more strings specifying the features to be associated
 #' with `new`.
@@ -37,8 +37,8 @@
 #' * `tone`
 #' @param val One or more strings specifying the values to be associated with
 #' the `feature`s.
-#' @param copy A string containing an existing character in the lookup table from
-#' which other features are copied, or an existing character with known
+#' @param copy One or more strings containing existing characters in the lookup table from
+#' which other features are copied, or existing characters with known
 #' diacritics.
 #' @param lookup A data frame containing a lookup table with feature values.
 #' `lookup` is optional; if left blank, a lookup table will be generated using
@@ -62,6 +62,12 @@
 #' z <- feature_assign(new='ph', feature='lar', val='aspirated')
 #' tail(z)
 #' ###
+#' j <- feature_assign(new=c('ph', 'th', 'kh'), copy=c('p_h', 't_h', 'k_h'))
+#' tail(j)
+#' k <- feature_assign(new=c('hl', 'hr', 'hn'), feature='voice',
+#'                     val='voiceless', copy=c('l', 'r', 'n'))
+#' tail(k)
+#' ###
 #' feature_lookup(phon='ph_G', feature=c('lar', 'modifications'), lookup=x)
 feature_assign <- function(new,
                            feature=NA,
@@ -77,24 +83,41 @@ feature_assign <- function(new,
     tmp <- update_lookup()
   }
 
-  i <- nrow(tmp)
+  for (n in new) {
 
-  if (!is.na(copy)) {
+    i <- nrow(tmp)
 
-    if(any(tmp[,1] == copy)){
-      r <- which(tmp[,1] == copy)
-      tmp[i+1,] <- tmp[r,]
-    } else {
-      fl <- unname(feature_lookup(copy))
-      tmp[i+1,2:16] <- fl
+    if (any(!is.na(copy)) && length(copy) == 1) {
+
+      if(any(tmp[,1] == copy)){
+        r <- which(tmp[,1] == copy)
+        tmp[i+1,] <- tmp[r,]
+      } else {
+        fl <- unname(feature_lookup(copy))
+        tmp[i+1,2:16] <- fl
+      }
+
+    } else if (any(!is.na(copy)) && length(copy) == length(new)) {
+
+      if(any(tmp[,1] == copy[which(new==n)])){
+        r <- which(tmp[,1] == copy[which(new==n)])
+        tmp[i+1,] <- tmp[r,]
+      } else {
+        fl <- unname(feature_lookup(copy[which(new==n)]))
+        tmp[i+1,2:16] <- fl
+      }
+
+    } else if (any(!is.na(copy)) && length(copy) != length(new)) {
+      stop('The number of arguments passed to copy should be either 1 or
+           the same number as arguments passed to new.')
     }
 
-  }
+    tmp[i+1,'segm'] <- n
 
-  tmp[i+1,'segm'] <- new
+    if (any(!is.na(feature)) && any(!is.na(val))) {
+      tmp[i+1,feature] <- val
+    }
 
-  if (any(!is.na(feature)) && any(!is.na(val))) {
-    tmp[i+1,feature] <- val
   }
 
   return(tmp)

@@ -18,13 +18,13 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-`phonfeatures` is an R package which allows user to efficiently add columns with 
+`phonfeatures` is an R package which allows the user to efficiently add columns with 
 articulatory features to existing data frames with phonetic characters using
 the function `add_features()`. 
 
 The package provides several generic features for all regular IPA and X-SAMPA
 characters as well as for most diacritics. These generic features can be checked
-using the function `feature_lookup()`. The also provides functionality
+using the function `feature_lookup()`. The package also provides functionality
 for changing the feature values of known characters with `feature_reassign()`,
 and for introducing unknown characters with `feature_assign()`.
 
@@ -191,6 +191,28 @@ lkup <- feature_assign(new='th',
                        val=c('dental', 'long'),
                        copy='t_h')
 feature_lookup(phon='th', lookup=lkup)
+```
+
+You can bulk add new characters using `feature_assign` assuming they can all
+be copied from known characters, or that the same feature needs to be manipulated
+for all of them. In the following code block, features are bulk added from 
+known characters:
+
+```{r}
+lkup <- feature_assign(new=c('ph', 'th', 'kh'),
+                       copy=c('p_h', 't_h', 'k_h'))
+tail(lkup, 3)
+```
+
+Say you have been using `ph`, `th`, `kh` for preaspirated stop. They can be 
+bulk added like this:
+
+```{r}
+lkup <- feature_assign(new=c('hp', 'ht', 'hk'),
+                       feature='lar',
+                       val='preaspirated',
+                       copy=c('p', 't', 'k'))
+tail(lkup, 3)
 ```
 
 Unfortunately, `feature_assign` does not at present allow you to add unknown

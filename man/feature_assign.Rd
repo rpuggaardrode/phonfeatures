@@ -7,7 +7,7 @@
 feature_assign(new, feature = NA, val = NA, copy = NA, lookup = NULL)
 }
 \arguments{
-\item{new}{A string containing the character to be added to the X-SAMPA
+\item{new}{One or more strings containing characters to be added to the X-SAMPA
 lookup table.}
 
 \item{feature}{One or more strings specifying the features to be associated
@@ -34,8 +34,8 @@ The features for which generic features are provided are:
 \item{val}{One or more strings specifying the values to be associated with
 the \code{feature}s.}
 
-\item{copy}{A string containing an existing character in the lookup table from
-which other features are copied, or an existing character with known
+\item{copy}{One or more strings containing existing characters in the lookup table from
+which other features are copied, or existing characters with known
 diacritics.}
 
 \item{lookup}{A data frame containing a lookup table with feature values.
@@ -57,7 +57,7 @@ then passing \code{ph_G} to \code{\link[=feature_lookup]{feature_lookup()}} will
 stop (see the final example below). If you need to override this, \code{ph_G} must
 be manually assigned features.
 
-\code{feature_reassign()} does not presently support IPA
+\code{feature_assign()} does not presently support IPA
 characters. The function \code{\link[ipa:ipa]{ipa::ipa()}} is used under the hood to convert IPA
 characters to X-SAMPA, and if you are using characters that are not known
 to \code{\link[ipa:ipa]{ipa::ipa()}}, the functionality in this package will fail.
@@ -71,6 +71,12 @@ tail(y)
 ### If copy is left blank, NA's will be generated for unspecified features
 z <- feature_assign(new='ph', feature='lar', val='aspirated')
 tail(z)
+###
+j <- feature_assign(new=c('ph', 'th', 'kh'), copy=c('p_h', 't_h', 'k_h'))
+tail(j)
+k <- feature_assign(new=c('hl', 'hr', 'hn'), feature='voice',
+                    val='voiceless', copy=c('l', 'r', 'n'))
+tail(k)
 ###
 feature_lookup(phon='ph_G', feature=c('lar', 'modifications'), lookup=x)
 }
