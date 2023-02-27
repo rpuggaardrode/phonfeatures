@@ -70,7 +70,7 @@ add_features <- function(data,
 
   chars <- unique(data[,col])
 
-  for (c in chars) {
+  for (c in unlist(as.vector(chars))) {
     for (f in feature) {
       data[data[col]==c,f] <- feature_lookup(c, f, tmp, ipa=ipa)
     }
